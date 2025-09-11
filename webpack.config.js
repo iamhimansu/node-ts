@@ -1,12 +1,21 @@
+// webpack.config.js
 import path from 'path';
-import {fileURLToPath} from "node:url";
+import { fileURLToPath } from 'url';
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export default {
     entry: './server.ts',
-    mode: 'production',
+    mode: 'development',
     target: 'node',
+    experiments: {
+        outputModule: true,
+    },
+    output: {
+        filename: '[name].js',
+        path: path.resolve(__dirname, 'dist'),
+    },
     module: {
         rules: [
             {
@@ -16,19 +25,18 @@ export default {
             },
         ],
     },
-    experiments: {
-        outputModule: true,
-    },
     resolve: {
         extensions: ['.ts', '.js'],
-    },
-    output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist'),
-        module: true,
-        library: {
-            type: 'module',
+        // Add a resolve alias for .js imports to target .ts files
+        alias: {
+            './pages/*.js': './pages/*.ts',
+            // Or a more general rule for all internal files
+            './': path.resolve(__dirname, './'),
         },
     },
-
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+        },
+    },
 };

@@ -1,4 +1,5 @@
 import express, {Request, Response} from "express";
+import './pages/about.ts';
 
 const app = express();
 
@@ -15,10 +16,6 @@ app.get("/", (req: Request, res: Response) => {
     res.end();
 });
 
-app.get("/about", (req: Request, res: Response) => {
-    res.send("About Us Page!");
-    res.end();
-});
 
 app.get("/contact", (req: Request, res: Response) => {
     res.send("Contact Us Page!");
@@ -27,10 +24,12 @@ app.get("/contact", (req: Request, res: Response) => {
 
 app.post('/register', (req: Request, res: Response) => {
     console.log(req.body);
-    const { name, email } = req.body;
+    const {name, email} = req.body;
     res.send(`User: ${name} with email: ${email} registered successfully.`);
 });
 
 app.listen(8080, () => {
     console.log("Server running on port 8080");
-})
+});
+
+export default app;
