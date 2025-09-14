@@ -1,19 +1,24 @@
 {
   "compilerOptions": {
-    "target": "es2020",
-    "module": "nodenext",
-    "outDir": "./dist",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
+    /* JavaScript output settings */
+    "target": "es2020",                       // output modern JS
+    "module": "nodenext",                     // use Node ESM style modules
+    "moduleResolution": "nodenext",           // resolve imports using Node ESM rules
+    "outDir": "./dist",                        // output directory for compiled JS
+    "sourceMap": true,                         // generate .map files for debugging
+    "declaration": true,                       // generate .d.ts files
+
+    /* Strictness and safety */
+    "strict": true,                            // enable strict type checking
+    "esModuleInterop": true,                   // allow default imports from CommonJS
     "forceConsistentCasingInFileNames": true,
-    "sourceMap": true,
-    "declaration": true,
-    "noEmit": false,
-    "rewriteRelativeImportExtensions": true
+    "skipLibCheck": true,                      // skip checking node_modules types
+
+    /* Build behavior */
+    "noEmit": false,                           // actually emit JS
+    "rewriteRelativeImportExtensions": true    // convert .ts → .js in emitted code
   },
   "include": [
-    "server.ts",
-    "pages"
+    "**/*.ts"
   ]
 }

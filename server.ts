@@ -1,5 +1,5 @@
 import express, {Request, Response} from "express";
-import './pages/about.ts';
+import './pages/about';
 
 const app = express();
 
