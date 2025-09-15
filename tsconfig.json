@@ -4,6 +4,7 @@
     "target": "es2020",                       // output modern JS
     "module": "nodenext",                     // use Node ESM style modules
     "moduleResolution": "nodenext",           // resolve imports using Node ESM rules
+    "rootDir": "./",                        // output directory for compiled JS
     "outDir": "./dist",                        // output directory for compiled JS
     "sourceMap": true,                         // generate .map files for debugging
     "declaration": true,                       // generate .d.ts files

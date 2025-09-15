@@ -1,0 +1,2 @@
+Common JS -> const express = require('express');
+ES -> import express from 'express';
