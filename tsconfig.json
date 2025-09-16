@@ -1,25 +1,22 @@
 {
   "compilerOptions": {
-    /* JavaScript output settings */
-    "target": "es2020",                       // output modern JS
-    "module": "nodenext",                     // use Node ESM style modules
-    "moduleResolution": "nodenext",           // resolve imports using Node ESM rules
-    "rootDir": "./",                        // output directory for compiled JS
-    "outDir": "./dist",                        // output directory for compiled JS
-    "sourceMap": true,                         // generate .map files for debugging
-    "declaration": true,                       // generate .d.ts files
-
-    /* Strictness and safety */
-    "strict": true,                            // enable strict type checking
-    "esModuleInterop": true,                   // allow default imports from CommonJS
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "outDir": "./dist",
+    "rootDir": "./",
+    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true,                      // skip checking node_modules types
-
-    /* Build behavior */
-    "noEmit": false,                           // actually emit JS
-    "rewriteRelativeImportExtensions": true    // convert .ts → .js in emitted code
+    "strict": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "allowJs": false,
+    "noEmit": false,   // ✅ let ts-loader emit code
+    "baseUrl": ".",
+    "paths": {
+      "*": ["*", "src/*"]
+    }
   },
-  "include": [
-    "**/*.ts"
-  ]
+  "include": ["./**/*.ts"],
+  "exclude": ["node_modules", "dist"]
 }

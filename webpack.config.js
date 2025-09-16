@@ -1,42 +1,37 @@
-// webpack.config.js
-import path from 'path';
-import { fileURLToPath } from 'url';
+import path from "path";
+import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export default {
-    entry: './server.ts',
-    mode: 'development',
-    target: 'node',
-    experiments: {
-        outputModule: true,
+    entry: {
+        main: "./server.ts",
     },
-    output: {
-        filename: '[name].js',
-        path: path.resolve(__dirname, 'dist'),
-    },
+    target: "node",
+    mode: "development",
     module: {
         rules: [
             {
                 test: /\.ts$/,
-                use: 'ts-loader',
+                use: "ts-loader",
                 exclude: /node_modules/,
             },
         ],
     },
     resolve: {
-        extensions: ['.ts', '.js'],
-        // Add a resolve alias for .js imports to target .ts files
-        alias: {
-            './pages/*.js': './pages/*.ts',
-            // Or a more general rule for all internal files
-            './': path.resolve(__dirname, './'),
-        },
+        extensions: [".ts", ".tsx", ".js"],
+    },
+    output: {
+        path: path.resolve(__dirname, "dist"),
+        filename: "[name].js",          // main bundle
+        chunkFilename: "[name].js",     // dynamic chunks
+        clean: true,
     },
     optimization: {
         splitChunks: {
-            chunks: 'all',
+            chunks: "all",
+            automaticNameDelimiter: "/",  // keeps folder structure
         },
     },
 };

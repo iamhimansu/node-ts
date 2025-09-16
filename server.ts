@@ -1,5 +1,4 @@
 import express, {Request, Response} from "express";
-import './pages/about';
 
 const app = express();
 
@@ -16,7 +15,16 @@ app.get("/", (req: Request, res: Response) => {
     res.end();
 });
 
-
+// lazy load the "about" route
+app.get("/about", async (req: Request, res: Response, next) => {
+    try {
+        const {default: About} = await import("./pages/about");
+        About(app);  // this mounts the /about handler
+        next();      // re-run the middleware stack so the new route can handle it
+    } catch (err) {
+        next(err);
+    }
+});
 app.get("/contact", (req: Request, res: Response) => {
     res.send("Contact Us Page!");
     res.end();

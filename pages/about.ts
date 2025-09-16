@@ -1,8 +1,11 @@
-import app from "../server.ts";
-import {Request, Response} from "express";
+import {Express, Request, Response} from "express";
 
-app.get("/about", (req: Request, res: Response) => {
-    res.send(
-        'This is about page'
-    );
-});
+const About = (app: Express) => {
+    app.get("/about", (req: Request, res: Response) => {
+        res.send(
+            'This is about page'
+        );
+    });
+}
+
+export default About;
