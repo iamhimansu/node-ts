@@ -10,6 +10,10 @@ export default {
     },
     target: "node",
     mode: "development",
+    // ⬇️ force Webpack to output ESM instead of require()
+    experiments: {
+        outputModule: true,
+    },
     module: {
         rules: [
             {

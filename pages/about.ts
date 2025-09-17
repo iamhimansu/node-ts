@@ -1,11 +1,16 @@
 import {Express, Request, Response} from "express";
 
-const About = (app: Express) => {
-    app.get("/about", (req: Request, res: Response) => {
-        res.send(
-            'This is about page'
-        );
-    });
+class AboutPage {
+    constructor(public app: Express) {
+        this.app = app;
+    }
+
+    render(){
+        this.app.get("/about", (req: Request, res: Response) => {
+            res.send("This is about page");
+        })
+    }
+
 }
 
-export default About;
+export default AboutPage;
